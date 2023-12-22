@@ -4,6 +4,9 @@ import App from './App.jsx'
 import { ChakraProvider, extendTheme } from '@chakra-ui/react'
 import {mode} from "@chakra-ui/theme-tools"
 import { ColorModeScript } from '@chakra-ui/react'
+import { RouterProvider, createBrowserRouter } from 'react-router-dom'
+import UserPage from './pages/UserPage.jsx'
+import PostPage from './pages/PostPage.jsx'
 
 const styles = {
   global:(props)=>({
@@ -28,11 +31,31 @@ const colors ={
 
 const theme = extendTheme({styles, config, colors})
 
+const routes = createBrowserRouter([
+  {
+    path:"/",
+    element:<App/>,
+    children:[
+      {
+        path:"/:username",
+        element:<UserPage/>
+      },
+      {
+        path:"/:username/posts/:pid",
+        element:<PostPage/>
+      }
+    ]
+  },
+  
+])
+
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
+  <React.StrictMode>    
     <ChakraProvider theme={theme}>
+    <RouterProvider router={routes}>
     <ColorModeScript initialColorMode={theme.config.initialColorMode} />
     <App />
-    </ChakraProvider>  
+    </RouterProvider> 
+    </ChakraProvider>     
   </React.StrictMode>,
 )

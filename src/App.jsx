@@ -1,12 +1,15 @@
-import { Button } from "@chakra-ui/react"
+import { Container } from "@chakra-ui/react"
+import { Outlet } from "react-router-dom"
+import Header from "./components/Header"
 
 
 function App() {
   
   return (
-    <>
-      <Button>heklo</Button>
-    </>
+    <Container maxW="620px">
+      <Header/>
+      <Outlet/>
+    </Container>
   )
 }
 
