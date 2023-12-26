@@ -1,8 +1,9 @@
+import PostMain from "../components/PostMain"
 
 
 const PostPage = () => {
   return (
-    <div>PostPage</div>
+    <PostMain/>
   )
 }
 
